@@ -55,5 +55,26 @@ public class PriceCalculatorTest {
         assertThat(result, is(4.79));
     }
 
+    @Test
+    public void shouldReturnPriceForProductsAndCouponForCategory() {
 
-}
+        // given
+        PriceCalculator priceCalculator = new PriceCalculator();
+        List<Product> products = new ArrayList<>();
+        products.add(new Product("Masło", 5.99, Category.FOOD));
+        products.add(new Product("Chleb", 4.99, Category.FOOD));
+        products.add(new Product("TV", 1179.00, Category.HOME));
+
+
+        List<Coupon> coupons = new ArrayList<>();
+        coupons.add(new Coupon(Category.FOOD, 20));
+
+        // when
+        double result = priceCalculator.calculatePrice(products, coupons);
+
+        // then
+        assertThat(result, is(951.98));
+    }
+
+
+    }
